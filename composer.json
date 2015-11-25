@@ -1,6 +1,6 @@
 {
     "name": "pvol/flow",
-    "description": "流程流转引擎",
+    "description": "A flow engine with powerful configuration function.",
     "type": "library",
     "keywords": ["flow","laravel"],
     "license": "MIT",
@@ -12,7 +12,6 @@
     ],
     "require": {
         "php": ">=5.5.9",
-        "qiniu/php-sdk": "7.0.5"
     },
     "require-dev": {
         "phpmd/phpmd" : "@stable"
