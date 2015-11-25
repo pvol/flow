@@ -1,0 +1,26 @@
+{
+    "name": "pvol/flow",
+    "description": "流程流转引擎",
+    "type": "library",
+    "keywords": ["flow","laravel"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "finepvol",
+            "email": "15726766@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "qiniu/php-sdk": "7.0.5"
+    },
+    "require-dev": {
+        "phpmd/phpmd" : "@stable"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pvol\\Flow\\": "src/lib/"
+        }
+    },
+    "minimum-stability": "dev"
+}
