@@ -198,16 +198,6 @@ class Step extends Model
             'accepted_users' => $to_accepted_users,
             'accepted_roles' => $to_accepted_roles
         ));
-        
-        // 添加hook
-        if (isset($runing_config['hook'])) {
-            foreach ($runing_config['hook'] as $hook) {
-                Log::info(var_export($hook,true));
-                if(is_subclass_of($hook, "Pvol\Flow\Hook")){
-                    $hook::factory()->action($to, $to_status);
-                }
-            }
-        }
 
         $request = Request::all();
         $data = $request['data'];
@@ -231,6 +221,9 @@ class Step extends Model
             'created_user' => $user->name,
             'created_role' => $flow->running_role,
         ));
+        
+        // 添加hook
+        self::addHooks("after_step");
     }
     
     /** 
@@ -286,6 +279,17 @@ class Step extends Model
             'created_user' => $user->name,
             'created_role' => $flow->running_role,
         ));
+    }
+    
+    private static function addHooks($position){
+        $hooks = Config::get("flow.zyd.hooks");
+        if (isset($hooks[$position])) {
+            foreach ($hooks[$position] as $hook) {
+                if(is_subclass_of($hook, "Pvol\Flow\Hook")){
+                    $hook::factory()->action($to, $to_status);
+                }
+            }
+        }
     }
 
 }

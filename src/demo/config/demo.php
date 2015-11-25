@@ -28,6 +28,11 @@
  */
 
 return [
+    'hooks' => [
+        'after_step' => [ // 流程步骤执行完时执行
+            'App\Models\Zyd\Flow\Hook\PreOrder' // 需要是hook类的子类
+        ],
+    ],
     'steps' => [
         'step1'=>[
             'title' => 'step1',
