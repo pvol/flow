@@ -199,6 +199,16 @@ class Step extends Model
             'accepted_roles' => $to_accepted_roles
         ));
         
+        // 添加hook
+        if (isset($runing_config['hook'])) {
+            foreach ($runing_config['hook'] as $hook) {
+                Log::info(var_export($hook,true));
+                if(is_subclass_of($hook, "Pvol\Flow\Hook")){
+                    $hook::factory()->action($to, $to_status);
+                }
+            }
+        }
+
         $request = Request::all();
         $data = $request['data'];
         foreach($data as &$item){
